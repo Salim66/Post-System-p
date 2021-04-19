@@ -81,4 +81,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/update/{id}', 'App\Http\Controllers\Backend\UnitController@update')->name('units.update');
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\UnitController@delete')->name('units.delete');
     });
+
+
+    Route::prefix('categories')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\Backend\CategoryController@view')->name('categories.view');
+        Route::get('/add', 'App\Http\Controllers\Backend\CategoryController@add')->name('categories.add');
+        Route::post('/store', 'App\Http\Controllers\Backend\CategoryController@store')->name('categories.store');
+        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\CategoryController@edit')->name('categories.edit');
+        Route::put('/update/{id}', 'App\Http\Controllers\Backend\CategoryController@update')->name('categories.update');
+        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\CategoryController@delete')->name('categories.delete');
+    });
 });
