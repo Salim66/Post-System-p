@@ -46,6 +46,8 @@
 <script src="{{ asset('backend/assets/plugins/') }}/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="{{ asset('backend/assets/plugins/') }}/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{ asset('backend/assets/plugins/') }}/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Select2 -->
+<script src="{{ asset('backend/assets/plugins/') }}/select2/js/select2.full.min.js"></script>
 <!-- jquery-validation -->
 <script src="{{ asset('backend/assets/plugins/') }}/jquery-validation/jquery.validate.min.js"></script>
 <script src="{{ asset('backend/assets/plugins/') }}/jquery-validation/additional-methods.min.js"></script>
@@ -54,6 +56,18 @@
 <script src="{{ asset('backend/assets/dist/') }}/js/custom/custom.js"></script>
 <!-- SweetAlert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    $(function(){
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        })
+    });
+</script>
 
 <!-- Page specific script -->
 <script>

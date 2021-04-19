@@ -24,6 +24,10 @@
 <link rel="stylesheet"
     href="{{ asset('backend/assets/plugins/') }}/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="{{ asset('backend/assets/plugins/') }}/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('backend/assets/plugins/') }}/select2/css/select2.min.css">
+<link rel="stylesheet"
+    href="{{ asset('backend/assets/plugins/') }}/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 {{-- sweetalert2 --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 {{-- Date Picker --}}

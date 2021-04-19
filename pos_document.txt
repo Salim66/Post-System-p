@@ -1,0 +1,32 @@
+====Inventory Management System(POS)====
+
+Manage User
+=> View Users
+Manage Profile
+=> Your profile
+=> Password change
+Manage Suppliers
+=> View supplier
+Manage Customers
+=> View customers
+=> Credit customers(report pdf)
+=> Paid customerss(report pdf)
+=> Credit/debit customer wise(report pdf)
+Manage Units
+=> View units
+Manage Category
+=> View category
+Manage Products
+=> View Product
+Manage Purchase
+=> View purchase
+=> Approval purchase
+=> Purchase report date wise(report pdf)
+Manage Invoice
+=> View invoice
+=> Pos invoice(pdf)
+=> Approval invoice
+=> Daily invoice report(pdf)
+Manage Stock
+=> Stock report(pdf)
+=> Stock supplier/product wise(pdf)

@@ -91,4 +91,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/update/{id}', 'App\Http\Controllers\Backend\CategoryController@update')->name('categories.update');
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\CategoryController@delete')->name('categories.delete');
     });
+
+
+    Route::prefix('products')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\Backend\ProductController@view')->name('products.view');
+        Route::get('/add', 'App\Http\Controllers\Backend\ProductController@add')->name('products.add');
+        Route::post('/store', 'App\Http\Controllers\Backend\ProductController@store')->name('products.store');
+        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\ProductController@edit')->name('products.edit');
+        Route::put('/update/{id}', 'App\Http\Controllers\Backend\ProductController@update')->name('products.update');
+        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\ProductController@delete')->name('products.delete');
+    });
 });
