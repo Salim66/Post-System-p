@@ -71,4 +71,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/update/{id}', 'App\Http\Controllers\Backend\CustomerController@update')->name('customers.update');
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\CustomerController@delete')->name('customers.delete');
     });
+
+
+    Route::prefix('units')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\Backend\UnitController@view')->name('units.view');
+        Route::get('/add', 'App\Http\Controllers\Backend\UnitController@add')->name('units.add');
+        Route::post('/store', 'App\Http\Controllers\Backend\UnitController@store')->name('units.store');
+        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\UnitController@edit')->name('units.edit');
+        Route::put('/update/{id}', 'App\Http\Controllers\Backend\UnitController@update')->name('units.update');
+        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\UnitController@delete')->name('units.delete');
+    });
 });
