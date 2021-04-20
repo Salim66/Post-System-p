@@ -108,6 +108,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/add', 'App\Http\Controllers\Backend\PurchaseController@add')->name('purchases.add');
         Route::post('/store', 'App\Http\Controllers\Backend\PurchaseController@store')->name('purchases.store');
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\PurchaseController@delete')->name('purchases.delete');
+        Route::get('/pending-list', 'App\Http\Controllers\Backend\PurchaseController@purchasePendingList')->name('purchases.pending.list');
+        Route::get('/approved/{id}', 'App\Http\Controllers\Backend\PurchaseController@purchaseApproved')->name('purchases.approved');
     });
 
     Route::get('/supplier-wise-category', 'App\Http\Controllers\Backend\DefaultController@supplierWiseCategory')->name('supplier.wise.cateogry');

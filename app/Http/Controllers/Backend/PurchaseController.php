@@ -65,4 +65,29 @@ class PurchaseController extends Controller
             return redirect()->route('purchases.view')->with('success', 'Data deleted successfully ): ');
         }
     }
+    //purchase pending list
+    public function purchasePendingList()
+    {
+        $data = Purchase::where('status', false)->latest()->get();
+        return view('backend.purchase.purchase-pending-list', [
+            'all_data' => $data,
+        ]);
+    }
+    //purchase approved
+    public function purchaseApproved($id)
+    {
+        $data = Purchase::find($id);
+        $product = Product::where('id', $data->product_id)->first();
+        if ($data != NULL) {
+            $data->status = true;
+            if ($data->update()) {
+                $product_quantity = ((float)($data->buying_qty)) + ((float)($product->quantity));
+                $product->quantity = $product_quantity;
+                $product->update();
+            }
+            return redirect()->route('purchases.pending.list')->with('success', 'Data approved successfully ):');
+        } else {
+            return redirect()->back()->with('error', "Sorry! something won't wrong");
+        }
+    }
 }
