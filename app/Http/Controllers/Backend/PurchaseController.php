@@ -56,48 +56,13 @@ class PurchaseController extends Controller
             return redirect()->back()->with('error', 'Sorry! you do not select any item.');
         }
     }
-    //product edit
-    public function edit($id)
-    {
-        $data       = Product::find($id);
-        $suppliers  = Supplier::all();
-        $units      = Unit::all();
-        $categories = Category::all();
-        return view('backend.product.edit-product', [
-            'data'       => $data,
-            'suppliers'  => $suppliers,
-            'units'      => $units,
-            'categories' => $categories,
-        ]);
-    }
-    //product update
-    public function update(Request $request, $id)
-    {
-        $data = Product::find($id);
-        if ($data != NULL) {
-            $this->validate($request, [
-                'supplier_id' => 'required',
-                'unit_id' => 'required',
-                'category_id' => 'required',
-                'name' => 'required',
-            ]);
-
-            $data->supplier_id = $request->supplier_id;
-            $data->unit_id = $request->unit_id;
-            $data->category_id = $request->category_id;
-            $data->name = $request->name;
-            $data->updated_by = Auth::user()->id;
-            $data->update();
-            return redirect()->route('products.view')->with('success', 'Data updated successfully ):');
-        }
-    }
-    //product delete
+    //purchase delete
     public function delete($id)
     {
-        $data = Product::find($id);
+        $data = Purchase::find($id);
         if ($data != NULL) {
             $data->delete();
-            return redirect()->back()->with('success', 'Data deleted successfully ): ');
+            return redirect()->route('purchases.view')->with('success', 'Data deleted successfully ): ');
         }
     }
 }

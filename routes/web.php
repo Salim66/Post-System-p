@@ -107,8 +107,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/view', 'App\Http\Controllers\Backend\PurchaseController@view')->name('purchases.view');
         Route::get('/add', 'App\Http\Controllers\Backend\PurchaseController@add')->name('purchases.add');
         Route::post('/store', 'App\Http\Controllers\Backend\PurchaseController@store')->name('purchases.store');
-        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\PurchaseController@edit')->name('purchases.edit');
-        Route::put('/update/{id}', 'App\Http\Controllers\Backend\PurchaseController@update')->name('purchases.update');
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\PurchaseController@delete')->name('purchases.delete');
     });
 

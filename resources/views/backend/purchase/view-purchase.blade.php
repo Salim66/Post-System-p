@@ -54,7 +54,7 @@
                                         <th>Unit Price</th>
                                         <th>Buying Price</th>
                                         <th>Status</th>
-                                        <th width="10%">Action</th>
+                                        <th width="6%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -70,17 +70,20 @@
                                         <td>{{ $data->buying_qty }}</td>
                                         <td>{{ $data->unit_price }}</td>
                                         <td>{{ $data->buying_price }}</td>
-                                        <td>{{ $data->status }}</td>
                                         <td>
-                                            <a title="Edit" href="{{ route('products.edit', $data->id) }}"
-                                                class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-
+                                            @if($data->status == false)
+                                            <span class="badge badge-danger">Pending</span>
+                                            @elseif ($data->status == true)
+                                            <span class="badge badge-success">Approved</span>
+                                            @endif
+                                        </td>
+                                        <td>
                                             <form class="d-inline-block"
-                                                action="{{ route('products.delete', $data->id) }}" method="POST">
+                                                action="{{ route('purchases.delete', $data->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" id="delete" class="btn btn-sm btn-danger"><i
-                                                        class="fas fa-trash"></i></button>
+                                                <button title="Delete" type="submit" id="delete"
+                                                    class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                                             </form>
 
                                             {{-- <a title="Delete" id="delete"
