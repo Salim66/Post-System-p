@@ -101,4 +101,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/update/{id}', 'App\Http\Controllers\Backend\ProductController@update')->name('products.update');
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\ProductController@delete')->name('products.delete');
     });
+
+
+    Route::prefix('purchases')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\Backend\PurchaseController@view')->name('purchases.view');
+        Route::get('/add', 'App\Http\Controllers\Backend\PurchaseController@add')->name('purchases.add');
+        Route::post('/store', 'App\Http\Controllers\Backend\PurchaseController@store')->name('purchases.store');
+        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\PurchaseController@edit')->name('purchases.edit');
+        Route::put('/update/{id}', 'App\Http\Controllers\Backend\PurchaseController@update')->name('purchases.update');
+        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\PurchaseController@delete')->name('purchases.delete');
+    });
+
+    Route::get('/supplier-wise-category', 'App\Http\Controllers\Backend\DefaultController@supplierWiseCategory')->name('supplier.wise.cateogry');
+    Route::get('/category-wise-product', 'App\Http\Controllers\Backend\DefaultController@categoryWiseProduct')->name('category.wise.product');
 });

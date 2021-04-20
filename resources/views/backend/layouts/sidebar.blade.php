@@ -163,6 +163,24 @@ $route = Route::current()->getName();
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item {{ ($prefix == '/purchases')  ? 'menu-open' : ' ' }}">
+                    <a href="#" class="nav-link {{ ($prefix == '/purchases')  ? 'active' : ' ' }}">
+                        <i class="nav-icon fas fa-store"></i>
+                        <p>
+                            Manage Purchase
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('purchases.view') }}"
+                                class="nav-link {{ ($route == 'purchases.view')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>View Purchase</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
 

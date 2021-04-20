@@ -51,11 +51,12 @@
 <!-- jquery-validation -->
 <script src="{{ asset('backend/assets/plugins/') }}/jquery-validation/jquery.validate.min.js"></script>
 <script src="{{ asset('backend/assets/plugins/') }}/jquery-validation/additional-methods.min.js"></script>
-
-<!-- Custom Js -->
-<script src="{{ asset('backend/assets/dist/') }}/js/custom/custom.js"></script>
+<!-- handlebar js -->
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <!-- SweetAlert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- Custom Js -->
+<script src="{{ asset('backend/assets/dist/') }}/js/custom/custom.js"></script>
 
 <script>
     $(function(){
