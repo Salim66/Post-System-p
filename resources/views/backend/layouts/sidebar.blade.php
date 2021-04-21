@@ -234,6 +234,31 @@ $route = Route::current()->getName();
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item {{ ($prefix == '/stocks')  ? 'menu-open' : ' ' }}">
+                    <a href="#" class="nav-link {{ ($prefix == '/stocks')  ? 'active' : ' ' }}">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+                        <p>
+                            Manage Stocks
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('stocks.report') }}"
+                                class="nav-link {{ ($route == 'stocks.report')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Stock Report</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('supplier.product.wise.stocks.report') }}"
+                                class="nav-link {{ ($route == 'supplier.product.wise.stocks.report')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Supplier/Product wise Report</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
             </ul>

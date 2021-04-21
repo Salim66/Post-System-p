@@ -133,4 +133,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/daily-report', 'App\Http\Controllers\Backend\InvoiceController@invoiceDailyReport')->name('invoices.daily.report');
         Route::get('/daily-report-pdf', 'App\Http\Controllers\Backend\InvoiceController@invoiceDailyReportPdf')->name('invoices.daily.report.pdf');
     });
+
+
+    Route::prefix('stocks')->group(function () {
+        Route::get('/report', 'App\Http\Controllers\Backend\StockController@stockReport')->name('stocks.report');
+        Route::get('/report/pdf', 'App\Http\Controllers\Backend\StockController@stockReportPdf')->name('stock.report.pdf');
+        Route::get('/supplier/product-wise-report', 'App\Http\Controllers\Backend\StockController@supplierProductWiseReport')->name('supplier.product.wise.stocks.report');
+        Route::get('/supplier-wise-report', 'App\Http\Controllers\Backend\StockController@supplierWiseStockReportPdf')->name('supplier.wise.stock.report.pdf');
+        Route::get('/product-wise-report', 'App\Http\Controllers\Backend\StockController@productWiseStockReportPdf')->name('product.wise.stock.report.pdf');
+    });
 });
