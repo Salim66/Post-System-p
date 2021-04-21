@@ -20,4 +20,10 @@ class DefaultController extends Controller
         $data = Product::where('category_id', $request->category_id)->get();
         return response()->json($data);
     }
+    //product quantity
+    public function productQuantity(Request $request)
+    {
+        $data = Product::where('id', $request->product_id)->first()->quantity;
+        return response()->json($data);
+    }
 }

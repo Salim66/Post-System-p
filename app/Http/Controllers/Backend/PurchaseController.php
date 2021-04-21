@@ -9,6 +9,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class PurchaseController extends Controller
 {
@@ -89,5 +90,24 @@ class PurchaseController extends Controller
         } else {
             return redirect()->back()->with('error', "Sorry! something won't wrong");
         }
+    }
+    //purchase daily report
+    public function purchaseDailyReport()
+    {
+        return view('backend.purchase.purchase-daily-report');
+    }
+    //purchase daily report pdf
+    public function purchaseDailyReportPdf(Request $request)
+    {
+        $start_date = date('Y-m-d', strtotime($request->start_date));
+        $end_date = date('Y-m-d', strtotime($request->end_date));
+        $data = Purchase::whereBetween('date', [$start_date, $end_date])->where('status', true)->orderBy('supplier_id')->orderBy('category_id')->orderBy('product_id')->get();
+        $pdf = PDF::loadView('backend.pdf.purchase-daily-report-pdf', [
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'all_data' => $data,
+        ]);
+        $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        return $pdf->stream('document.pdf');
     }
 }

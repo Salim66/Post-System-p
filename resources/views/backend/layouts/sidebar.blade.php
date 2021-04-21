@@ -186,9 +186,40 @@ $route = Route::current()->getName();
                                 <p>Purchase Pending List</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('purchases.daily.report') }}"
+                                class="nav-link {{ ($route == 'purchases.daily.report')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Purchase Daily Report</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
-
+                <li class="nav-item {{ ($prefix == '/invoices')  ? 'menu-open' : ' ' }}">
+                    <a href="#" class="nav-link {{ ($prefix == '/invoices')  ? 'active' : ' ' }}">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+                        <p>
+                            Manage Invoice
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('invoices.view') }}"
+                                class="nav-link {{ ($route == 'invoices.view')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>View Invoice</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('invoices.pending.list') }}"
+                                class="nav-link {{ ($route == 'invoices.pending.list')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Invoice Approval</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
             </ul>

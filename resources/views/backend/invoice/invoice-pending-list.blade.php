@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Manage Purchase</h1>
+                    <h1 class="m-0">Manage Invoice Pending List</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Purchase</li>
+                        <li class="breadcrumb-item active">Invoice</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -33,64 +33,54 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                Purchase List
+                                Invoice pending List
 
                             </h3>
-                            <a href="{{ route('purchases.add') }}" class="btn btn-primary btn-sm float-right"><i
-                                    class="fas fa-plus-circle"></i> Add Purchase</a>
+                            {{-- <a href="{{ route('invoices.add') }}" class="btn btn-primary btn-sm float-right"><i
+                                class="fas fa-plus-circle"></i> Add Invoice</a> --}}
                         </div>
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-hover table-responsive">
+                            <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Purchase No</th>
-                                        <th>Date</th>
-                                        <th>Product</th>
-                                        <th>Category</th>
-                                        <th>Supplier</th>
+                                        <th>Customer Name</th>
+                                        <th>Invoice No</th>
+                                        <th>date</th>
                                         <th>Description</th>
-                                        <th>Quantity</th>
-                                        <th>Unit Price</th>
-                                        <th>Buying Price</th>
+                                        <th>Total Amount</th>
                                         <th>Status</th>
-                                        <th width="6%">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($all_data as $data)
-                                    <tr class="{{ $data->id }}">
+                                    <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ $data->purchase_no }}</td>
-                                        <td>{{ $data->date }}</td>
-                                        <td>{{ $data->product->name }}</td>
-                                        <td>{{ $data->category->name }}</td>
-                                        <td>{{ $data->supplier->name }}</td>
+                                        <td>{{ @$data->payment->customer->name }}</td>
+                                        <td>Invoice NO #{{ $data->invoice_no }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($data->date)) }}</td>
                                         <td>{{ $data->description }}</td>
-                                        <td>{{ $data->buying_qty }}</td>
-                                        <td>{{ $data->unit_price }}</td>
-                                        <td>{{ $data->buying_price }}</td>
+                                        <td>{{ @$data->payment->total_amount }}</td>
                                         <td>
-                                            @if($data->status == false)
-                                            <span class="badge badge-danger">Pending</span>
-                                            @elseif ($data->status == true)
+                                            @if($data->status == true)
                                             <span class="badge badge-success">Approved</span>
+                                            @elseif($data->status == false)
+                                            <span class="badge badge-danger">Pending</span>
                                             @endif
                                         </td>
                                         <td>
                                             @if($data->status == false)
+                                            <a title="Approved" href="{{ route('invoices.approved', $data->id) }}"
+                                                class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i></a>
                                             <form class="d-inline-block"
-                                                action="{{ route('purchases.delete', $data->id) }}" method="POST">
+                                                action="{{ route('invoices.delete', $data->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button title="Delete" type="submit" id="delete"
                                                     class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                                             </form>
                                             @endif
-
-                                            {{-- <a title="Delete" id="delete"
-                                                href="{{ route('suppliers.delete', $data->id) }}"
-                                            class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a> --}}
                                         </td>
                                     </tr>
                                     @endforeach

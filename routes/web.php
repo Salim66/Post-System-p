@@ -110,8 +110,23 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\PurchaseController@delete')->name('purchases.delete');
         Route::get('/pending-list', 'App\Http\Controllers\Backend\PurchaseController@purchasePendingList')->name('purchases.pending.list');
         Route::get('/approved/{id}', 'App\Http\Controllers\Backend\PurchaseController@purchaseApproved')->name('purchases.approved');
+        Route::get('/daily-report', 'App\Http\Controllers\Backend\PurchaseController@purchaseDailyReport')->name('purchases.daily.report');
+        Route::get('/daily-report-pdf', 'App\Http\Controllers\Backend\PurchaseController@purchaseDailyReportPdf')->name('purchases.daily.report.pdf');
     });
 
     Route::get('/supplier-wise-category', 'App\Http\Controllers\Backend\DefaultController@supplierWiseCategory')->name('supplier.wise.cateogry');
     Route::get('/category-wise-product', 'App\Http\Controllers\Backend\DefaultController@categoryWiseProduct')->name('category.wise.product');
+    Route::get('/product-quantity', 'App\Http\Controllers\Backend\DefaultController@productQuantity')->name('product.quantity');
+
+
+    Route::prefix('invoices')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\Backend\InvoiceController@view')->name('invoices.view');
+        Route::get('/add', 'App\Http\Controllers\Backend\InvoiceController@add')->name('invoices.add');
+        Route::post('/store', 'App\Http\Controllers\Backend\InvoiceController@store')->name('invoices.store');
+        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\InvoiceController@delete')->name('invoices.delete');
+        Route::get('/pending-list', 'App\Http\Controllers\Backend\InvoiceController@invoicePendingList')->name('invoices.pending.list');
+        Route::get('/approved/{id}', 'App\Http\Controllers\Backend\InvoiceController@purchaseApproved')->name('invoices.approved');
+        Route::get('/daily-report', 'App\Http\Controllers\Backend\InvoiceController@purchaseDailyReport')->name('invoices.daily.report');
+        Route::get('/daily-report-pdf', 'App\Http\Controllers\Backend\InvoiceController@purchaseDailyReportPdf')->name('invoices.daily.report.pdf');
+    });
 });

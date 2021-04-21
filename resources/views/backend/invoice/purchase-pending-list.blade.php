@@ -33,7 +33,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                Purchase List
+                                Purchase Pending List
 
                             </h3>
                             <a href="{{ route('purchases.add') }}" class="btn btn-primary btn-sm float-right"><i
@@ -79,18 +79,10 @@
                                         </td>
                                         <td>
                                             @if($data->status == false)
-                                            <form class="d-inline-block"
-                                                action="{{ route('purchases.delete', $data->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button title="Delete" type="submit" id="delete"
-                                                    class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                            </form>
+                                            <a title="Approved" id="approved"
+                                                href="{{ route('purchases.approved', $data->id) }}"
+                                                class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i></a>
                                             @endif
-
-                                            {{-- <a title="Delete" id="delete"
-                                                href="{{ route('suppliers.delete', $data->id) }}"
-                                            class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a> --}}
                                         </td>
                                     </tr>
                                     @endforeach

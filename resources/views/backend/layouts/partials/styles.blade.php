@@ -39,6 +39,9 @@
     $( function() {
       $( "#datepicker" ).datepicker();
     } );
+    $( function() {
+      $( "#datepicker1" ).datepicker();
+    } );
 </script>
 <!-- Notify js -->
 <script src="{{ asset('backend/assets/plugins/') }}/jquery/jquery.min.js"></script>
