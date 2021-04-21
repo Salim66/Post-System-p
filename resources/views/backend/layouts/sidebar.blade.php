@@ -218,6 +218,20 @@ $route = Route::current()->getName();
                                 <p>Invoice Approval</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('invoices.print.list') }}"
+                                class="nav-link {{ ($route == 'invoices.print.list')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Invoice Print List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('invoices.daily.report') }}"
+                                class="nav-link {{ ($route == 'invoices.daily.report')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Invoice Print List</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

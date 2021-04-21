@@ -16,4 +16,9 @@ class Invoice extends Model
     {
         return $this->belongsTo('App\Models\Payment', 'id', 'invoice_id');
     }
+
+    public function invoice_detail()
+    {
+        return $this->hasMany('App\Models\InvoiceDetail', 'invoice_id', 'id');
+    }
 }

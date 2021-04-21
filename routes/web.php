@@ -125,8 +125,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/store', 'App\Http\Controllers\Backend\InvoiceController@store')->name('invoices.store');
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\InvoiceController@delete')->name('invoices.delete');
         Route::get('/pending-list', 'App\Http\Controllers\Backend\InvoiceController@invoicePendingList')->name('invoices.pending.list');
-        Route::get('/approved/{id}', 'App\Http\Controllers\Backend\InvoiceController@purchaseApproved')->name('invoices.approved');
-        Route::get('/daily-report', 'App\Http\Controllers\Backend\InvoiceController@purchaseDailyReport')->name('invoices.daily.report');
-        Route::get('/daily-report-pdf', 'App\Http\Controllers\Backend\InvoiceController@purchaseDailyReportPdf')->name('invoices.daily.report.pdf');
+        Route::get('/approved/{id}', 'App\Http\Controllers\Backend\InvoiceController@invoiceApproved')->name('invoices.approved');
+        Route::get('/approved/{id}', 'App\Http\Controllers\Backend\InvoiceController@invoiceApproved')->name('invoices.approved');
+        Route::post('/approved/store/{id}', 'App\Http\Controllers\Backend\InvoiceController@invoiceApprovedStore')->name('invoice.approved.store');
+        Route::get('/print-list', 'App\Http\Controllers\Backend\InvoiceController@invoicePrintList')->name('invoices.print.list');
+        Route::get('/print/{id}', 'App\Http\Controllers\Backend\InvoiceController@invoicePrint')->name('invoices.print');
+        Route::get('/daily-report', 'App\Http\Controllers\Backend\InvoiceController@invoiceDailyReport')->name('invoices.daily.report');
+        Route::get('/daily-report-pdf', 'App\Http\Controllers\Backend\InvoiceController@invoiceDailyReportPdf')->name('invoices.daily.report.pdf');
     });
 });

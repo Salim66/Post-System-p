@@ -9,8 +9,10 @@ use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use App\Models\Payment;
 use App\Models\PaymentDetail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class InvoiceController extends Controller
 {
@@ -126,5 +128,75 @@ class InvoiceController extends Controller
             PaymentDetail::where('invoice_id', $data->id)->delete();
             return redirect()->back()->with('success', 'Data deleted successfully ): ');
         }
+    }
+    //invoice approved
+    public function invoiceApproved($id)
+    {
+        $data = Invoice::find($id);
+        return view('backend.invoice.invoice-approved', [
+            'data' => $data,
+        ]);
+    }
+    //invoice approved store
+    public function invoiceApprovedStore(Request $request, $id)
+    {
+        foreach ($request->selling_qty as $key => $val) {
+            $invoice_detail = InvoiceDetail::where('id', $key)->first();
+            $product = Product::where('id', $invoice_detail->product_id)->first();
+            if ($product->quantity < $request->selling_qty[$key]) {
+                return redirect()->back()->with('error', 'Sorry! you have approve maximum value');
+            }
+        }
+        $invoice = Invoice::find($id);
+        $invoice->approved_by = Auth::user()->id;
+        $invoice->status = true;
+
+        foreach ($request->selling_qty as $key => $val) {
+            $invoice_detail = InvoiceDetail::where('id', $key)->first();
+            $invoice_detail->status = true;
+            $invoice_detail->update();
+            $product = Product::where('id', $invoice_detail->product_id)->first();
+            $product->quantity = ((float)$product->quantity - (float)$request->selling_qty[$key]);
+            $product->save();
+        }
+        $invoice->update();
+        return redirect()->route('invoices.pending.list')->with('success', 'Data updated successfully ): ');
+    }
+    //invoice print list
+    public function invoicePrintList()
+    {
+        $data = Invoice::orderBy('id', 'desc')->orderBy('date', 'desc')->where('status', true)->get();
+        return view('backend.invoice.invoice-print-list', [
+            'all_data' => $data,
+        ]);
+    }
+    //invoice print pdf
+    public function invoicePrint($id)
+    {
+        $data = Invoice::find($id);
+        $pdf = PDF::loadView('backend.pdf.invoice-print', [
+            'data' => $data,
+        ]);
+        $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        return $pdf->stream('document.pdf');
+    }
+    //invoice daily report
+    public function invoiceDailyReport()
+    {
+        return view('backend.invoice.invoice-daily-report');
+    }
+    //invoice daily report pdf
+    public function invoiceDailyReportPdf(Request $request)
+    {
+        $sdate = date('Y-m-d', strtotime($request->start_date));
+        $edate = date('Y-m-d', strtotime($request->end_date));
+        $data = Invoice::whereBetween('date', [$sdate, $edate])->where('status', true)->get();
+        $pdf = PDF::loadView('backend.pdf.daily-invoice-report-pdf', [
+            'all_data' => $data,
+            'sdate' => $sdate,
+            'edate' => $edate,
+        ]);
+        $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        return $pdf->stream('document.pdf');
     }
 }
