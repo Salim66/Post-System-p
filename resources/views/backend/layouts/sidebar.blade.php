@@ -107,6 +107,27 @@ $route = Route::current()->getName();
                                 <p>View Customers</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('customers.credit') }}"
+                                class="nav-link {{ ($route == 'customers.credit')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customers Credit</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('customers.paid') }}"
+                                class="nav-link {{ ($route == 'customers.paid')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customers Paid</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('customers.wise.report') }}"
+                                class="nav-link {{ ($route == 'customers.wise.report')  ? 'active' : ' ' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customers Wise Report</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item {{ ($prefix == '/units')  ? 'menu-open' : ' ' }}">

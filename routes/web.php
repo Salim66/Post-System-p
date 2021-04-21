@@ -70,6 +70,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit/{id}', 'App\Http\Controllers\Backend\CustomerController@edit')->name('customers.edit');
         Route::put('/update/{id}', 'App\Http\Controllers\Backend\CustomerController@update')->name('customers.update');
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\CustomerController@delete')->name('customers.delete');
+        Route::get('/credit/list', 'App\Http\Controllers\Backend\CustomerController@creditCustomerList')->name('customers.credit');
+        Route::get('/credit/list/pdf', 'App\Http\Controllers\Backend\CustomerController@creditCustomerListPdf')->name('customers.credit.pdf');
+        Route::get('/invoice/edit/{invoice_id}', 'App\Http\Controllers\Backend\CustomerController@customerInvoiceEdit')->name('customer.invoice.edit');
+        Route::post('/invoice/update/{invoice_id}', 'App\Http\Controllers\Backend\CustomerController@customerInvoiceUpdate')->name('customer.invoice.update');
+        Route::get('/invoice/details/{invoice_id}', 'App\Http\Controllers\Backend\CustomerController@customerInvoiceDetailsPdf')->name('customer.invoice.details.pdf');
+        Route::get('/paid/list', 'App\Http\Controllers\Backend\CustomerController@paidCustomerList')->name('customers.paid');
+        Route::get('/paid/list/pdf', 'App\Http\Controllers\Backend\CustomerController@paidCustomerListPdf')->name('customers.paid.pdf');
+        Route::get('/wise/report', 'App\Http\Controllers\Backend\CustomerController@customerWiseReport')->name('customers.wise.report');
+        Route::get('/wise/credit/report', 'App\Http\Controllers\Backend\CustomerController@customerWiseCreditReport')->name('customers.wise.credit.report');
+        Route::get('/wise/paid/report', 'App\Http\Controllers\Backend\CustomerController@customerWisePaidReport')->name('customers.wise.paid.report');
     });
 
 
